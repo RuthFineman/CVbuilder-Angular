@@ -1,0 +1,157 @@
+.admin-dashboard {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  direction: rtl;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-header h1 {
+  color: #2c3e50;
+  margin: 0;
+}
+
+.logout-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+}
+
+.user-management h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.user-table-container {
+  overflow-x: auto;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px 15px;
+  text-align: right;
+}
+
+.user-table th {
+  background-color: #34495e;
+  color: white;
+  font-weight: 500;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.user-table tr:hover {
+  background-color: #e5e5e5;
+}
+
+.action-btn {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.view-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.view-btn:hover {
+  background-color: #2980b9;
+}
+
+.edit-btn {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #27ae60;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+.block-btn {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.block-btn:hover {
+  background-color: #7f8c8d;
+}
+
+.unblock-btn {
+  background-color: #f34612;
+  color: white;
+}
+
+.unblock-btn:hover {
+  background-color: #d32a00;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border-left: 4px solid #c62828;
+}
+
+.loading {
+  text-align: center;
+  padding: 50px 0;
+  color: #7f8c8d;
+  font-size: 18px;
+}
+
+.no-data {
+  text-align: center;
+  color: #7f8c8d;
+  padding: 20px;
+}
+
+/* סגנון למשתמשים חסומים */
+.blocked-user {
+  background-color: #ffebee !important;
+  color: #e52525;
+}
+
+.blocked-user:hover {
+  background-color: #ffcdd2 !important;
+}

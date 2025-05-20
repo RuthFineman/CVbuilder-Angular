@@ -1,0 +1,113 @@
+<!-- <div class="admin-dashboard">
+  <header class="admin-header">
+    <h1>מערכת ניהול משתמשים</h1>
+    <button class="logout-btn" (click)="logout()">התנתק</button>
+  </header>
+
+  @if (error) {
+  <div class="error-message">{{ error }}</div>
+  }
+
+  @if (loading) {
+  <div class="loading">טוען נתונים...</div>
+  } @else {
+  <div class="user-management">
+    <h2>רשימת משתמשים</h2>
+
+    <div class="user-table-container">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>שם מלא</th>
+            <th>אימייל</th>
+            <th>תפקיד</th>
+            <th>סטטוס</th>
+            <th>פעולות</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (users.length > 0) {
+          @for (user of users; track user.id) {
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.fullName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>
+              <button class="action-btn view-btn" [routerLink]="['/admin/users', user.id]">הצג</button>
+              <button class="action-btn" [ngClass]="user.isBlocked ? 'unblock-btn' : 'block-btn'"
+              
+                (click)="toggleBlockUser(user.id, user.isBlocked)">
+                {{ user.isBlocked ? 'בטל חסימה' : 'חסום' }}
+              </button>
+            </td>
+          </tr>
+          }
+          } @else {
+          <tr>
+            <td colspan="5" class="no-data">אין משתמשים להצגה</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  }
+</div> -->
+<div class="admin-dashboard">
+  <header class="admin-header">
+    <h1>מערכת ניהול משתמשים</h1>
+    <button class="logout-btn" (click)="logout()">התנתק</button>
+  </header>
+
+  @if (error) {
+    <div class="error-message">{{ error }}</div>
+  }
+
+  @if (loading) {
+    <div class="loading">טוען נתונים...</div>
+  } @else {
+    <div class="user-management">
+      <h2>רשימת משתמשים</h2>
+
+      <div class="user-table-container">
+        <table class="user-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>שם מלא</th>
+              <th>אימייל</th>
+              <th>תפקיד</th>
+              <th>סטטוס</th>
+              <th>פעולות</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (users.length > 0) {
+              @for (user of users; track user.id) {
+                <tr [ngClass]="{ 'blocked-user': user.isBlocked }">
+                  <td>{{ user.id }}</td>
+                  <td>{{ user.fullName }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.role }}</td>
+                  <td>
+                    <button class="action-btn"
+                      [ngClass]="user.isBlocked ? 'unblock-btn' : 'block-btn'"
+                      (click)="toggleBlockUser(user.id, user.isBlocked)">
+                      {{ user.isBlocked ? 'בטל חסימה' : 'חסום' }}
+                    </button>
+                  </td>
+                </tr>
+              }
+            } @else {
+              <tr>
+                <td colspan="6" class="no-data">אין משתמשים להצגה</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+</div>

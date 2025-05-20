@@ -1,0 +1,50 @@
+<div class="templates-container">
+
+  <div *ngIf="isLoading" class="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+    <span>טוען תבניות…</span>
+  </div>
+
+  <div *ngIf="error && !isLoading" class="error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!isLoading && !error" class="cards-grid">
+    <mat-card *ngFor="let t of templates" class="template-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>description</mat-icon>
+        <mat-card-title>{{ t.name }}</mat-card-title>
+        <mat-card-subtitle>
+          <mat-chip [color]="t.inUse ? 'primary' : undefined" selected>
+            {{ t.inUse ? 'מפורסם' : 'לא מפורסם' }}
+          </mat-chip>
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <a [href]="t.templateUrl" target="_blank">לצפייה בתבנית</a>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="!t.inUse"
+          (click)="publish(t)">
+          <mat-icon>publish</mat-icon>
+          פרסם
+        </button>
+
+        <button
+          mat-raised-button
+          color="warn"
+          *ngIf="t.inUse"
+          (click)="unpublish(t)">
+          <mat-icon>cancel</mat-icon>
+          הסר פרסום
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+</div>

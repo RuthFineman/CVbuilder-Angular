@@ -1,0 +1,52 @@
+<div class="admin-login-container">
+    <div class="admin-login-box">
+      <h2>התחברות מנהל</h2>
+  
+      @if (error) {
+        <div class="error-message">{{ error }}</div>
+      }
+  
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">אימייל</label>
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email"
+            required
+            placeholder="הזן את האימייל שלך"
+          >
+          @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+            <div class="validation-error">
+              אנא הזן כתובת אימייל תקינה
+            </div>
+          }
+        </div>
+  
+        <div class="form-group">
+          <label for="password">סיסמה</label>
+          <input 
+            type="password" 
+            id="password" 
+            formControlName="password"
+            required
+            placeholder="הזן את הסיסמה שלך"
+          >
+          @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+            <div class="validation-error">
+              אנא הזן סיסמה
+            </div>
+          }
+        </div>
+  
+        <button 
+          type="submit" 
+          class="login-button"
+          [disabled]="loginForm.invalid || loading"
+        >
+          {{ loading ? 'מתחבר...' : 'התחברות' }}
+        </button>
+      </form>
+    </div>
+  </div>
+  

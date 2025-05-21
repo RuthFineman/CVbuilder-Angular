@@ -71,7 +71,6 @@ export class TemplatesManagementComponent implements OnInit {
       }
     });
   }
-  
   unpublish(t: Template): void {
     this.svc.toggleTemplateStatus(t.id, false).subscribe({
       next: updated => {

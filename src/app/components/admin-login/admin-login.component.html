@@ -1,3 +1,5 @@
+<!-- <img src="/assets/images/login.jpg" width="200" />
+
 <div class="admin-login-container">
     <div class="admin-login-box">
       <h2>התחברות מנהל</h2>
@@ -41,6 +43,57 @@
   
         <button 
           type="submit" 
+          class="login-button"
+          [disabled]="loginForm.invalid || loading"
+        >
+          {{ loading ? 'מתחבר...' : 'התחברות' }}
+        </button>
+      </form>
+    </div>
+  </div>
+   -->
+   <div class="admin-login-wrapper">
+    <img src="/assets/images/login.jpg" alt="Login Image" class="background-image" />
+    <div class="admin-login-box">
+      <h2>התחברות מנהל</h2>
+      <div *ngIf="error" class="error-message">{{ error }}</div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">אימייל</label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            required
+            placeholder="הזן את האימייל שלך"
+          />
+          <div
+            *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+            class="validation-error"
+          >
+            אנא הזן כתובת אימייל תקינה
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="password">סיסמה</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            required
+            placeholder="הזן את הסיסמה שלך"
+          />
+          <div
+            *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+            class="validation-error"
+          >
+            אנא הזן סיסמה
+          </div>
+        </div>
+  
+        <button
+          type="submit"
           class="login-button"
           [disabled]="loginForm.invalid || loading"
         >

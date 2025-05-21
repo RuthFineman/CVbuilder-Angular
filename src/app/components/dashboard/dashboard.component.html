@@ -1,55 +1,55 @@
+<div class="dashboard-container">
+  <h1>CV Builder Admin Dashboard</h1>
 
-  <div class="dashboard-container">
-    <h1>CV Builder Admin Dashboard</h1>
-  
-    <div *ngIf="isLoading" class="loading-spinner">
-      <mat-spinner></mat-spinner>
+  <div *ngIf="chartOptions" class="chart-container">
+    <div class="chart-header">
+      <h2>קורות חיים לפי שעה</h2>
+      <p class="chart-subtitle">כאן יוצג הגרף של קורות החיים שהועלו לפי שעות</p>
     </div>
-  
-    <div *ngIf="!isLoading && statistics" class="dashboard-content">
-  
-      <div class="stats-cards">
-        <mat-card class="stat-card">
-          <mat-card-header>
-            <mat-card-title>Total Users</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <div class="stat-value">{{ statistics?.totalUsers }}</div>
-          </mat-card-content>
-        </mat-card>
-  
-        <mat-card class="stat-card">
-          <mat-card-header>
-            <mat-card-title>Total CVs</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <div class="stat-value">{{ statistics?.totalCVs }}</div>
-          </mat-card-content>
-        </mat-card>
-  
-        <mat-card class="stat-card">
-          <mat-card-header>
-            <mat-card-title>Total Templates</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <div class="stat-value">{{ statistics?.totalTemplates }}</div>
-          </mat-card-content>
-        </mat-card>
-      </div>
-  
-      <div class="charts-container">
-        <div class="chart-row">
-          <mat-card class="chart-card">
-            <mat-card-header>
-              <mat-card-title>Template Usage</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <canvas id="templateUsageChart"></canvas>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-  
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [stroke]="chartOptions.stroke"
+      [tooltip]="chartOptions.tooltip">
+    </apx-chart>
+  </div> 
+
+  <div *ngIf="isLoading" class="loading-spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div *ngIf="!isLoading && statistics" class="dashboard-content">
+    <div class="stats-cards">
+      <mat-card class="stat-card templates-card">
+        <mat-card-header>
+          <mat-card-title>Total Templates</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="stat-value">{{ statistics?.totalTemplates }}</div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card cvs-card">
+        <mat-card-header>
+          <mat-card-title>Total CVs</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="stat-value">{{ statistics?.totalCVs }}</div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card users-card">
+        <mat-card-header>
+          <mat-card-title>Total Users</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="stat-value">{{ statistics?.totalUsers }}</div>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
-  
+</div>
+
+
+

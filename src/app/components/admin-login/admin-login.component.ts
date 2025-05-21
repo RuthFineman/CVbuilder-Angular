@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { JwtService } from '../../service/jwt/jwt.service';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../service/auth/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './admin-login.component.html',
   styleUrl: './admin-login.component.css'
 })

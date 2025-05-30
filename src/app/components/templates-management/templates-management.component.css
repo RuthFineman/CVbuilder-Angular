@@ -1,11 +1,258 @@
 .templates-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
   padding: 2rem;
+  background-color: #f0f7fa;
+  background-image: linear-gradient(to bottom right, #e6f3f8, #f0f7fa);
+  min-height: calc(106vh - 64px);
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+/* Page Title (if you add one, e.g., <h1>Templates Management</h1>) */
+.templates-container > h1 {
+  text-align: center;
+  color: #2c3e7b;
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+  font-weight: 600;
+  position: relative;
 }
 
+.templates-container > h1::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 4px;
+  background-color: #3f51b5;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* Loading Spinner and Error Message Styling */
+.loading,
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+  color: #555;
+  font-size: 1.2rem;
+}
+
+.loading span {
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #2c3e7b;
+}
+
+.error {
+  color: #d32f2f; /* Material warn color */
+  font-weight: 500;
+  padding: 2rem;
+  background-color: rgba(211, 47, 47, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(211, 47, 47, 0.2);
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+/* Grid for Template Cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+/* Individual Template Card Styling */
 .template-card {
-  max-width: 400px;
-  margin: auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(44, 62, 123, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; 
+  top:50px;
+}
+
+.template-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(44, 62, 123, 0.12);
+}
+
+/* Card Header */
+.template-card mat-card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  align-items: center;
+}
+
+.template-card .mat-card-avatar {
+  background-color: rgba(63, 81, 181, 0.1); /* Light primary color background */
+  color: #3f51b5; /* Primary color */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  font-size: 28px; /* Adjust icon size if needed */
+}
+
+.template-card mat-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e7b;
+  margin-bottom: 0.25rem; /* Spacing between title and subtitle */
+}
+
+.template-card mat-card-subtitle .mat-chip {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  height: auto;
+  line-height: 1.2;
+  border-radius: 16px;
+}
+
+/* Specific styling for status chips */
+.template-card mat-card-subtitle mat-chip[selected] { /* Chip for 'מפורסם' */
+  background-color: #4dc0b0 !important; /* Teal color from dashboard */
+  color: white !important;
+}
+
+.template-card mat-card-subtitle mat-chip:not([selected]) { /* Chip for 'לא מפורסם' */
+  background-color: #e0e0e0 !important;
+  color: #555 !important;
+}
+
+/* Card Content */
+.template-card mat-card-content {
+  padding: 1.5rem;
+  flex-grow: 1; /* Allows content to take available space */
+  color: #333;
+}
+
+.template-card mat-card-content a {
+  color: #3f51b5; /* Primary color */
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.template-card mat-card-content a:hover {
+  color: #9c6ade; /* Purple accent from dashboard */
+  text-decoration: underline;
+}
+
+/* Card Actions (Buttons) */
+.template-card mat-card-actions {
+  padding: 1rem 1.5rem; /* Consistent padding */
+  background-color: #f9f9fb;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: flex-end; /* Aligns buttons to the end */
+  gap: 0.75rem; /* Space between buttons if multiple were visible */
+}
+
+.template-card mat-card-actions button {
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  border-radius: 8px;
+  text-transform: none; /* Keep button text as is */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.template-card mat-card-actions button:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.template-card mat-card-actions button mat-icon {
+  margin-right: 0.5rem; /* Space between icon and text */
+}
+
+.template-card mat-card-actions button[color="warn"] {
+  background-color: #3f88de; /* Softer red than default Material warn */
+  color: white;
+}
+.template-card mat-card-actions button[color="warn"]:hover {
+  background-color: #3f88de; /* Slightly more intense red on hover */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .templates-container {
+    padding: 1rem;
+  }
+  .templates-container > h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr; /* Single column on small screens */
+    gap: 1.5rem;
+  }
+  .template-card {
+    border-radius: 10px;
+  }
+  .template-card mat-card-header,
+  .template-card mat-card-content,
+  .template-card mat-card-actions {
+    padding: 1rem;
+  }
+  .template-card mat-card-title {
+    font-size: 1.15rem;
+  }
+  .template-card .mat-card-avatar {
+    height: 40px;
+    width: 40px;
+    font-size: 24px;
+  }
+}
+.templates-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(63, 81, 181, 0.1) 0,
+    rgba(63, 81, 181, 0.1) 2px,
+    transparent 2px,
+    transparent 20px
+  );
+  animation: animatedRectangles 10s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+@keyframes animatedRectangles {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(-20px, -20px) rotate(360deg);
+  }
+}
+
+.templates-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* שינוי צבע כפתור primary (מכחול טורקיז לכחול אמיתי) */
+.template-card mat-card-actions button[color="primary"] {
+  background-color: #3f51b5; /* כחול חומר */
+  color: white;
+}
+.template-card mat-card-actions button[color="primary"]:hover {
+  background-color: #303f9f; /* כחול כהה */
 }

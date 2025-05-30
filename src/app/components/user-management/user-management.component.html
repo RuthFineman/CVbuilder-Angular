@@ -1,57 +1,95 @@
-<div class="admin-dashboard">
-    <header class="admin-header">
-      <h1>מערכת ניהול משתמשים</h1>
-      <button class="logout-btn" (click)="logout()">התנתק</button>
-    </header>
+   <div class="admin-dashboard">
+    <div class="background-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
+    </div>
   
-    @if (error) {
-      <div class="error-message">{{ error }}</div>
-    }
+    <div class="content-wrapper">
+      <header class="admin-header">
+        <div class="header-content">
+          <h1>מערכת ניהול משתמשים</h1>
+          <button class="logout-btn" (click)="logout()">
+            <span class="logout-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            </span>
+            התנתק
+          </button>
+        </div>
+      </header>
   
-    @if (loading) {
-      <div class="loading">טוען נתונים...</div>
-    } @else {
-      <div class="user-management">
-        <h2>רשימת משתמשים</h2>
+      @if (error) {
+        <div class="error-message">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          {{ error }}
+        </div>
+      }
   
-        <div class="user-table-container">
-          <table class="user-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>שם מלא</th>
-                <th>אימייל</th>
-                <th>תפקיד</th>
-                <th>סטטוס</th>
-                <th>פעולות</th>
-              </tr>
-            </thead>
-            <tbody>
-              @if (users.length > 0) {
-                @for (user of users; track user.id) {
-                  <tr [ngClass]="{ 'blocked-user': user.isBlocked }">
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.fullName }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.role }}</td>
-                    <td>
-                      <button class="action-btn"
-                        [ngClass]="user.isBlocked ? 'unblock-btn' : 'block-btn'"
-                        (click)="toggleBlockUser(user.id, user.isBlocked)">
-                        {{ user.isBlocked ? 'בטל חסימה' : 'חסום' }}
-                      </button>
+      @if (loading) {
+        <div class="loading-container">
+          <div class="loading-spinner"></div>
+          <span>טוען נתונים...</span>
+        </div>
+      } @else {
+        <div class="user-management-card">
+          <div class="card-header">
+            <h2>רשימת משתמשים</h2>
+          </div>
+  
+          <div class="user-table-container">
+            <table class="user-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>שם מלא</th>
+                  <th>אימייל</th>
+                  <th>תפקיד</th>
+                  <th>סטטוס</th>
+                  <th>פעולות</th>
+                </tr>
+              </thead>
+              <tbody>
+                @if (users.length > 0) {
+                  @for (user of users; track user.id) {
+                    <tr [ngClass]="{ 'blocked-user': user.isBlocked }">
+                      <td>{{ user.id }}</td>
+                      <td>{{ user.fullName }}</td>
+                      <td>{{ user.email }}</td>
+                      <td>
+                        <span class="role-badge" [ngClass]="'role-' + user.role.toLowerCase()">
+                          {{ user.role }}
+                        </span>
+                      </td>
+                      <td>
+                        <span class="status-indicator" [ngClass]="user.isBlocked ? 'status-blocked' : 'status-active'">
+                          {{ user.isBlocked ? 'חסום' : 'פעיל' }}
+                        </span>
+                      </td>
+                      <td>
+                        <button class="action-btn"
+                          [ngClass]="user.isBlocked ? 'unblock-btn' : 'block-btn'"
+                          (click)="toggleBlockUser(user.id, user.isBlocked)">
+                          {{ user.isBlocked ? 'בטל חסימה' : 'חסום' }}
+                        </button>
+                      </td>
+                    </tr>
+                  }
+                } @else {
+                  <tr>
+                    <td colspan="6" class="no-data">
+                      <div class="no-data-content">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <p>אין משתמשים להצגה</p>
+                      </div>
                     </td>
                   </tr>
                 }
-              } @else {
-                <tr>
-                  <td colspan="6" class="no-data">אין משתמשים להצגה</td>
-                </tr>
-              }
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    }
+      }
+    </div>
   </div>
-  

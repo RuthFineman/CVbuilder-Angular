@@ -1,19 +1,5 @@
-<div class="dashboard-container">
+ <div class="dashboard-container">
   <h1>CV Builder Admin Dashboard</h1>
-
-  <div *ngIf="chartOptions" class="chart-container">
-    <div class="chart-header">
-      <h2>קורות חיים לפי שעה</h2>
-      <p class="chart-subtitle">כאן יוצג הגרף של קורות החיים שהועלו לפי שעות</p>
-    </div>
-    <apx-chart
-      [series]="chartOptions.series"
-      [chart]="chartOptions.chart"
-      [xaxis]="chartOptions.xaxis"
-      [stroke]="chartOptions.stroke"
-      [tooltip]="chartOptions.tooltip">
-    </apx-chart>
-  </div> 
 
   <div *ngIf="isLoading" class="loading-spinner">
     <mat-spinner></mat-spinner>
@@ -48,8 +34,20 @@
         </mat-card-content>
       </mat-card>
     </div>
+
+    <div *ngIf="chartOptions" class="chart-container">
+      <div class="chart-header">
+        <h2>קורות חיים לפי שעה</h2>
+        <p class="chart-subtitle">כאן יוצג הגרף של קורות החיים שהועלו לפי שעות</p>
+      </div>
+      <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [stroke]="chartOptions.stroke"
+        [tooltip]="chartOptions.tooltip">
+      </apx-chart>
+    </div> 
   </div>
+  
 </div>
-
-
-

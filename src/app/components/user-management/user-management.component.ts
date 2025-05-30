@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { User } from '../../models/user';
-import { environment } from '../../../environments/environment';
 import { UserService } from '../../service/users/user.service';
 import { NgApexchartsModule } from 'ng-apexcharts';
 

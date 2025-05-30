@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
     this.loadDashboardData();
     
     this.http.get<any[]>('https://localhost:7020/file-cv/resumes-by-hour').subscribe(data => {
-      const categories = data.map(d => d.time); // ISO Strings
+      const categories = data.map(d => d.time); 
       const values = data.map(d => d.count);
 
       this.chartOptions = {
@@ -42,7 +42,10 @@ export class DashboardComponent implements OnInit {
         }],
         chart: {
           height: 350,
-          type: "area"
+          type: "area",
+          zoom: {
+            enabled: false
+          }
         },
         stroke: {
           curve: "smooth"
@@ -58,7 +61,6 @@ export class DashboardComponent implements OnInit {
         }
       };
     });
-  // }
   }
 
   loadDashboardData(): void {

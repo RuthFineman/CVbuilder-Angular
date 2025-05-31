@@ -43,8 +43,9 @@ export class AdminLoginComponent implements OnInit {
             this.loading = false;
             return;
           }
+          if (typeof localStorage !== 'undefined') {
           localStorage.setItem('adminToken', response.token);
-          localStorage.setItem('adminId', response.id);
+          localStorage.setItem('adminId', response.id);}
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {

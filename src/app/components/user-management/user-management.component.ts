@@ -66,8 +66,9 @@ export class UserManagementComponent implements OnInit {
   }
   
   logout(): void {
+    if (typeof localStorage !== 'undefined') {
     localStorage.removeItem('adminToken');
-    localStorage.removeItem('adminId');
+    localStorage.removeItem('adminId');}
     this.router.navigate(['/login']);
   }
 }

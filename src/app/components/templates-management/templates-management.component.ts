@@ -46,8 +46,6 @@ export class TemplatesManagementComponent implements OnInit {
     this.isLoading = true;
     this.svc.getAllTemplates().subscribe({
       next: (data: Template[]) => {
-        console.log('Templates:', data);
-        console.log('Templates:', data);
 
         this.templates = data;
         this.isLoading = false;

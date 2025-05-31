@@ -209,7 +209,7 @@ h2::after {
   color: #6fe5e5;
   letter-spacing: 4px;
   text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
-  transform: rotate(-2deg);
+  transform: rotate(-1.5deg);
   text-align: center;
   margin-top: -500px;
 }
@@ -221,7 +221,7 @@ h2::after {
   text-align: center;
   letter-spacing: 2px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  transform: rotate(-2deg);
+  transform: rotate(-1.5deg);
   margin-top: -40px;
 }
 

@@ -1,7 +1,7 @@
 import { HttpInterceptorFn, HttpRequest, HttpHandlerFn } from '@angular/common/http';
 
 export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
-  
+  if (typeof localStorage !== 'undefined') {
   const token = localStorage.getItem('adminToken'); 
 
   if (token) {
@@ -12,6 +12,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: 
     });
     return next(authReq);
   }
+}
 
   return next(req);
 };

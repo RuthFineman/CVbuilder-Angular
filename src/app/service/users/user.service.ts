@@ -17,11 +17,12 @@ export class UserService {
   }
 
   toggleBlockUser(userId: number, newStatus: boolean): Observable<any> {
+
     const token = localStorage.getItem('adminToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
+  
     return this.http.put(`${this.apiUrl}/${userId}/block/${newStatus}`, null, { headers });
   }
 }

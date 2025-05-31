@@ -18,7 +18,6 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | Observable<boolean> | Promise<boolean> {
-    
     const token = localStorage.getItem('adminToken');
 
     if (!token) {
@@ -33,8 +32,8 @@ export class AuthGuard implements CanActivate {
     }
 
     return true;
-  }
-
+  
+}
   private parseJwt(token: string): any {
     try {
       return JSON.parse(atob(token.split('.')[1]));

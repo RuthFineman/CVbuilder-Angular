@@ -5,6 +5,7 @@
      <div class="glow-background"></div>
     <div class="admin-login-box">
       <h2>התחברות מנהל</h2>
+      
       <div *ngIf="error" class="error-message">{{ error }}</div>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
